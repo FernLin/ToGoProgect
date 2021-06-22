@@ -11,7 +11,7 @@ export const My = observer(() => {
 
   const { tabStore } = useStores()
 
-  useEffect(() => {}, []);
+  // useEffect(() => {}, []);
 
   const handleClick = (value) => {
     if (value === 1) return;
