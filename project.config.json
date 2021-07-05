@@ -1,10 +1,10 @@
 {
   "miniprogramRoot": "dist/",
-  "projectname": "demo",
-  "description": "测试用的项目",
-  "appid": "touristappid",
+  "projectname": "togo",
+  "description": "土特产购买",
+  "appid": "wx687d5d251c289fe8",
   "setting": {
-    "urlCheck": false,
+    "urlCheck": true,
     "es6": false,
     "enhance": false,
     "postcss": false,
@@ -18,18 +18,18 @@
     "scopeDataCheck": false,
     "uglifyFileName": false,
     "checkInvalidKey": true,
-    "checkSiteMap": true,
+    "checkSiteMap": false,
     "uploadWithSourceMap": true,
     "compileHotReLoad": false,
-    "useMultiFrameRuntime": false,
+    "useMultiFrameRuntime": true,
     "useApiHook": true,
+    "useApiHostProcess": true,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
       "outputPath": ""
     },
     "enableEngineNative": false,
-    "bundle": false,
     "useIsolateContext": true,
     "useCompilerModule": true,
     "userConfirmedUseCompilerModuleSwitch": false,
@@ -39,7 +39,5 @@
     "minifyWXSS": true
   },
   "compileType": "miniprogram",
-  "simulatorType": "wechat",
-  "simulatorPluginLibVersion": {},
   "condition": {}
 }

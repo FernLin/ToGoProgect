@@ -1,17 +1,21 @@
-import React from 'react';
+import { useEffect } from 'react';
 import Taro from "@tarojs/taro";
-import { View } from '@tarojs/components';
-import { observer } from 'mobx-react';
+import { View, Text } from '@tarojs/components'
+import { observer } from 'mobx-react'
 import { AtButton, AtTabBar } from 'taro-ui';
 import { useStores } from '../../hooks/use-stores';
-import api from '../../services/api';
 
 import './index.scss'
 
 export const Home = observer(() => {
 
-  const { tabStore, productStore } = useStores();
+  const { tabStore, counterStore } = useStores();
+  const { counter } = counterStore;
   const { tabIndex } = tabStore;
+
+  useEffect(() => {
+    console.log(counter);
+  }, [counter]);
 
   const handleClick = (value) => {
     if (value === 0) return;
@@ -21,26 +25,22 @@ export const Home = observer(() => {
     tabStore.changeTab(value);
   }
 
-  const getData = () => {
-    api.get('products').then((res) => {
-      productStore.productList = [...productStore.productList, ...res.data];
-    })
-  };
-
   return (
-    <View className='homeContainer'>
-      <View>我是首页</View>
-      <AtButton type='primary' onClick={getData}>获取数据</AtButton>
-      <View>获取的数据在这：{JSON.stringify(productStore.productList)}</View>
-      <AtTabBar
-        fixed
-        tabList={[
+    <View className='index'>
+        <View>首页</View>
+        <AtButton type='primary' onClick={() => counterStore.increment()}>自增</AtButton>
+        <AtButton type='primary' onClick={() => counterStore.decrement()}>自减</AtButton>
+        <AtButton type='primary' onClick={() => counterStore.incrementAsync()}>Add Async</AtButton>
+        <Text>{counter}</Text>
+        <AtTabBar
+          fixed
+          tabList={[
           { title: '首页', iconType: 'home' },
-          { title: '我的', iconType: 'user' }
+          { title: '个人', iconType: 'user' }
         ]}
-        onClick={handleClick}
-        current={tabIndex}
-      />
+          onClick={handleClick}
+          current={tabIndex}
+        />
     </View>
   )
 })

@@ -1,8 +1,8 @@
 import React from 'react'
 import tabStore from './tabStore'
-import productStore from './productStore'
+import counterStore from './counterStore'
 
 export const storesContext = React.createContext({
   tabStore,
-  productStore,
+  counterStore
 })

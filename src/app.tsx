@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import { Provider } from 'mobx-react'
-import "taro-ui/dist/style/index.scss";
+import 'taro-ui/dist/style/index.scss'
 
 import { storesContext } from './store'
 

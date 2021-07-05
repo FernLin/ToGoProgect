@@ -1,17 +1,21 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react';
 import Taro from "@tarojs/taro";
-import { View } from '@tarojs/components'
+import { View, Text } from '@tarojs/components'
 import { observer } from 'mobx-react'
-import { AtTabBar } from 'taro-ui'
-import { useStores } from '../../hooks/use-stores'
+import { AtButton, AtTabBar } from 'taro-ui';
+import { useStores } from '../../hooks/use-stores';
 
 import './index.scss'
 
 export const My = observer(() => {
 
-  const { tabStore } = useStores()
+  const { tabStore, counterStore } = useStores();
+  const { counter } = counterStore;
+  const { tabIndex } = tabStore;
 
-  // useEffect(() => {}, []);
+  useEffect(() => {
+    console.log(counter);
+  }, [counter]);
 
   const handleClick = (value) => {
     if (value === 1) return;
@@ -21,20 +25,22 @@ export const My = observer(() => {
     tabStore.changeTab(value);
   }
 
-  const { tabIndex } = tabStore
-
   return (
-    <View className='homeContainer'>
-      <View>我的页面</View>
-      <AtTabBar
-        fixed
-        tabList={[
+    <View className='index'>
+        <View>个人</View>
+        <AtButton type='primary' onClick={() => counterStore.increment()}>自增</AtButton>
+        <AtButton type='primary' onClick={() => counterStore.decrement()}>自减</AtButton>
+        <AtButton type='primary' onClick={() => counterStore.incrementAsync()}>Add Async</AtButton>
+        <Text>{counter}</Text>
+        <AtTabBar
+          fixed
+          tabList={[
           { title: '首页', iconType: 'home' },
-          { title: '我的', iconType: 'user' }
+          { title: '个人', iconType: 'user' }
         ]}
-        onClick={handleClick}
-        current={tabIndex}
-      />
+          onClick={handleClick}
+          current={tabIndex}
+        />
     </View>
   )
 })
