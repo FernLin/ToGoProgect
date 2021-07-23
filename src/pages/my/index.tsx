@@ -7,7 +7,7 @@ import { useStores } from '../../hooks/use-stores';
 
 import './index.scss'
 
-export const My = observer(() => {
+const My = observer(() => {
 
   const { tabStore, counterStore } = useStores();
   const { counter } = counterStore;
